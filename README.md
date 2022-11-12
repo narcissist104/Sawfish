@@ -1,15 +1,15 @@
-# Team *<enter team name here>* Small Group project
+# Team *<Sawfish* Small Group project
 
 ## Team members
 The members of the team are:
-- *<name of team member 1>*
-- *<name of team member 2>*
-- *<name of team member 3>*
-- *<name of team member 4>*
-- *<name of team member 5>*
+- *ALEX*
+- *CHUN-I*
+- *NARGES*
+- *ONEEB*
+- *YOUSSEF*
 
 ## Project structure
-The project is called `msms` (Music School Management System).  It currently consists of a single app `lessons` where all functionality resides.
+The project is called `Sawfish` (Music School Management System).  It currently consists of a single app `lessons` where all functionality resides.
 
 ## Deployed version of the application
 The deployed version of the application can be found at *<[enter URL here](URL)>*.
