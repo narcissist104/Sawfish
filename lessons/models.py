@@ -22,9 +22,12 @@ class Director(models.Model):
     def __str__(self):
         return str(self.name)
 
+class BankAccount(models.Model):
+    balance = models.FloatField()
 class Invoice(models.Model):
     invoiceNum = models.CharField(max_length=30)
     referNum = models.CharField(max_length=30)
+    bankAccNo = models.CharField(max_length=30)
     def __str__(self):
         return str(self.invoiceNum)
 
