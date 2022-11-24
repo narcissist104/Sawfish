@@ -28,7 +28,7 @@ class Invoice(models.Model):
     def __str__(self):
         return str(self.invoiceNum)
 
-class Lessons(models.Model):
+class Lesson(models.Model):
     title = models.CharField(max_length=20)
     duration = models.IntegerField()
     student_id = models.CharField(max_length=30)
@@ -36,16 +36,16 @@ class Lessons(models.Model):
     def __str__(self):
         return str(self.title)
 
-class Requests(models.Model):
+# Stores the dates in the availability database.
+class Availability(models.Model):
+    date = models.DateField()
+
+class Request(models.Model):
     student_id = models.CharField(max_length=30)
     # Store the availability as a reference to the dates within the availability database
     duration = models.IntegerField()
     # Interval stored as how many times per week
     interval = models.IntegerField()
+    availability = models.ManyToManyField(Availability)
     topic = models.CharField(max_length=20, default="")
     teacher_id = models.CharField(max_length=30, default="")
-
-# Stores the dates in the availability database.
-class Availability(models.Model):
-    request_id = models.CharField(max_length=30, default="")
-    date = models.DateField()
