@@ -3,6 +3,7 @@ from .forms import LogInForm, SignUpForm
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from .models import Request
 
 
 # Create your views here.
@@ -37,6 +38,6 @@ def log_in(request):
 def admin_requests(request):
     # if request.method == 'GET':
     #     return render()
-    return render(request, 'admin_requests.html')
-        # Check all requests where teacher id = current user id
+    requests = Request.objects.all()
+    return render(request, 'admin_requests.html', {'requests' : requests})
 

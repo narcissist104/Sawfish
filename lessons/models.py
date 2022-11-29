@@ -31,7 +31,8 @@ class User(AbstractUser):
     def mini_gravatar(self):
         """Return a URL to a miniature version of the user's gravatar."""
         return self.gravatar(size=60)
-
+    def __str__(self):
+        return str(self.name)
 
 # Create your models here.
 class Student(models.Model):
@@ -61,7 +62,7 @@ class Invoice(models.Model):
     def __str__(self):
         return str(self.invoiceNum)
 
-class Lessons(models.Model):
+class Lesson(models.Model):
     title = models.CharField(max_length=20)
     duration = models.IntegerField()
     student_id = models.CharField(max_length=30)
@@ -69,7 +70,7 @@ class Lessons(models.Model):
     def __str__(self):
         return str(self.title)
 
-class Requests(models.Model):
+class Request(models.Model):
     student_id = models.CharField(max_length=30)
     # Store the availability as a reference to the dates within the availability database
     duration = models.IntegerField()
