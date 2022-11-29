@@ -10,6 +10,7 @@ from .models import Request
 def home(request):
     return render(request, 'home.html')
 
+
 def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -20,6 +21,7 @@ def sign_up(request):
     else:
         form = SignUpForm()
     return render(request, 'sign_up.html', {'form': form})
+
 
 def log_in(request):
     if request.method == 'POST':
@@ -35,9 +37,12 @@ def log_in(request):
     form = LogInForm()
     return render(request, 'log_in.html', {'form': form})
 
-def admin_requests(request):
-    # if request.method == 'GET':
-    #     return render()
-    requests = Request.objects.all()
-    return render(request, 'admin_requests.html', {'requests' : requests})
 
+def admin_requests(request):
+    requests = Request.objects.all()
+    return render(request, 'admin_requests.html', {'requests': requests})
+
+
+def admin_edit_requests(request, request_id):
+    req = Request.objects.filter(id=request_id)
+    return render(request, 'admin_edit_requests.html', context={'request': req})
