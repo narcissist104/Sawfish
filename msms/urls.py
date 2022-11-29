@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from lessons import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # URLs for Student
+    path('', views.student_dashboard, name='student_dashboard'),
+    path('request_form/', views.request_form, name='request form'),
+    path('view_request_form/', views.view_request_form, name='view_request_form')
+
 ]
