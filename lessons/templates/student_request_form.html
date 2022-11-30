@@ -5,17 +5,12 @@
         <body>
             <h1>Student Request Form</h1>
             <p>Please enter the details below</p>
-            <form action=''>
             
-            <form action=''>
-                Select the lessons that you would like to request: <select name='lessons'>
-                    <option value='violin'>Violin</option>
-                    <option value='piano'>Piano</option>
-                </select>
-            </form>
+            <form action='/view_request_form/' method='post'>
+                {% csrf_token %}
+                {{form.as_p}}
 
-            <form>
-                <div class='DatePicker'>
+                <div class='DateTimePicker'>
                     <label for'selected_date'>Enter your start time: </label>
                     <input type='date' id='selected_date' name='selected_date'/>
                     <select name='time'>
@@ -33,37 +28,8 @@
                         <option>20:00</option>
                     </select>
                 </div>
-            </form>
 
-            <form>
-                Choose the number of lessons you would like to take: <select name='number_of_lessons'>
-                    <option>24</option>
-                    <option>48</option>
-                    <option>72</option>
-                    <option>96</option>
-                </select>
-            </form>
-
-            <form action=''>
-                Select the interval for the lesson: <select name='interval'>
-                    <option value='everyOneWeek'>1 lesson every 1 week</option>
-                    <option value='everyTwoWeek'>1 lesson every 2 week</option>
-                </select>
-            </form>
-
-            <form action=''>
-                Select the duration of each lesson: <select name='duration'>
-                    <option value='thirty_min'>30 minutes</option>
-                    <option value='fourty_five_min'>45 minutes</option>
-                    <option value='one_hour'>60 minutes</option>
-                </select>
-            </form>
-
-            <form>
-                Teacher's name(if have in mind): <input type='text' name='teacher'>
-            </form>
-
-            <input type='submit' value='submmit'>
+            <input type='submit' value='submit'>
         </form>
 
         </body>

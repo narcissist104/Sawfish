@@ -22,7 +22,7 @@ urlpatterns = [
 
     # URLs for Student
     path('', views.student_dashboard, name='student_dashboard'),
-    path('request_form/', views.request_form, name='request form'),
+    path('student_request_form/', views.student_request_form, name='student_request_form'),
     path('view_request_form/', views.view_request_form, name='view_request_form')
 
 ]
