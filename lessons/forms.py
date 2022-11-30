@@ -53,3 +53,12 @@ class SignUpForm(forms.ModelForm):
             password=self.cleaned_data.get('new_password'),
         )
         return user
+
+class EditRequestForm(forms.Form):
+    """Form enabling request edits by admins"""
+    student_id = forms.IntegerField(label="student_id")
+    duration = forms.IntegerField(label="duration")
+    interval = forms.IntegerField(label="availability")
+    topic = forms.CharField(label="topic")
+    teacher_id = forms.IntegerField(label="teacher_id")
+

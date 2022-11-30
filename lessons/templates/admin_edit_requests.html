@@ -6,33 +6,17 @@
       <div class="col-12 my-auto">
         <div class="card cover-card offset-sm-2 offset-md-4 offset-lg-7">
           <h1 class="cover-heading">Admin Requests</h1>
-          {% for req in request %}
           <p class="cover-text">Edit request ID: {{ req.id }}</p>
-          <div class="float-left">
-            Student ID:
-            <input id="edit_student" value={{req.student_id}} class="float-right"/>
+          <div class="row col-sm-20 col-md-9 offset-md--3">
+          <form action='{{req.id}}' method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Submit" class="btn btn-primary">
+          </form>
           </div>
-          <div class="float-left">
-            Duration:
-            <input id="edit_duration" value={{req.duration}} class="float-right"/>
-          </div>
-          <div class="float-left">
-            Interval:
-            <input id="edit_interval" value={{req.interval}} class="float-right"/>
-          </div>
-          <div class="float-left">
-            Topic:
-            <input id="edit_topic" value={{req.topic}} class="float-right"/>
-          </div>
-          <div class="float-left">
-            Teacher ID:
-            <input id="edit_teacher" value={{req.teacher_id}} class="float-right"/>
-          </div>
-          <button>Submit</button>
-          {% endfor %}
-        </div>
       </div>
     </div>
   </div>
+</div>
 </div>
 {% endblock %}
