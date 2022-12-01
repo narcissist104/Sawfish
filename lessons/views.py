@@ -44,20 +44,24 @@ def admin_requests(request):
 
 
 def admin_edit_requests(request, request_id):
-    print('editing')
     if request.method == 'POST':
-        print('patching')
         form = EditRequestForm(request.POST)
         if form.is_valid():
-            print('valid')
             student_id = form.cleaned_data.get('student_id')
             duration = form.cleaned_data.get('duration')
             interval = form.cleaned_data.get('interval')
             topic = form.cleaned_data.get('topic')
             teacher_id = form.cleaned_data.get('teacher_id')
-            req = Request.objects.filter(id=request_id).update(student_id=student_id, duration=duration, interval=interval, topic=topic, teacher_id=teacher_id)
+            req = Request.objects.filter(id=request_id).update(student_id=student_id, duration=duration,
+                                                               interval=interval, topic=topic, teacher_id=teacher_id)
             return redirect('http://localhost:8000/admin_requests/')
-    else:
-        req = Request.objects.filter(id=request_id)
-        form = EditRequestForm()
-        return render(request, 'admin_edit_requests.html', context={'request': req, 'form':form})
+    req = Request.objects.filter(id=request_id)
+    form = EditRequestForm()
+    return render(request, 'admin_edit_requests.html', context={'request': req, 'form': form})
+
+def admin_delete_requests(request, request_id):
+    if request.method == 'POST':
+        requests = Request.objects.get(id=request_id).delete()
+        print('deleted')
+        return redirect('http://localhost:8000/admin_requests/')
+    return render(request, 'admin_delete_requests.html')

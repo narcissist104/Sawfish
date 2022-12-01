@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="cover-image">
+  <div class="container vh-100">
+    <div class="row h-100">
+      <div class="col-12 my-auto">
+        <div class="card cover-card offset-sm-2 offset-md-4 offset-lg-7">
+          <h1 class="cover-heading">Admin Requests</h1>
+          <p class="cover-text">Are you sure you want to delete request ID: {{ req.id }}?</p>
+          <div class="row col-sm-20 col-md-9 offset-md--3">
+          <form action='{{req.id}}' method="post">
+            {% csrf_token %}
+            <input type="submit" value="Confirm" class="btn btn-primary">
+          </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
