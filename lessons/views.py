@@ -55,13 +55,11 @@ def admin_edit_requests(request, request_id):
             req = Request.objects.filter(id=request_id).update(student_id=student_id, duration=duration,
                                                                interval=interval, topic=topic, teacher_id=teacher_id)
             return redirect('http://localhost:8000/admin_requests/')
-    req = Request.objects.filter(id=request_id)
     form = EditRequestForm()
-    return render(request, 'admin_edit_requests.html', context={'request': req, 'form': form})
+    return render(request, 'admin_edit_requests.html', context={'request': request_id, 'form': form})
 
 def admin_delete_requests(request, request_id):
     if request.method == 'POST':
         requests = Request.objects.get(id=request_id).delete()
-        print('deleted')
         return redirect('http://localhost:8000/admin_requests/')
-    return render(request, 'admin_delete_requests.html')
+    return render(request, 'admin_delete_requests.html', context={'request': request_id})
