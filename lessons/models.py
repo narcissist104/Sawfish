@@ -7,9 +7,9 @@ class Lesson(models.Model):
         ('piano','piano'),
         ('giutar','guitar'),
     )
-    select_lesson = models.CharField(max_length=20, choices=SELVALUE_LESSON)
+    instrument = models.CharField(max_length=20, choices=SELVALUE_LESSON)
 
-    start_date = models.DateTimeField('enter your start time', null=True)
+    #start_date = models.DateTimeField('enter your start time', null=True)
 
     SELVALUE__NUMBER_OF_LESSONS = (
         ('24','24'),
@@ -33,5 +33,6 @@ class Lesson(models.Model):
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
 
     teacher = models.CharField(max_length=20)
+    
 
 

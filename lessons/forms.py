@@ -1,11 +1,14 @@
 from django import forms
 from .models import Lesson
 
-class Student_Request_Form(forms.Form):
+class Student_Request_Form(forms.ModelForm):
+    
     class Meta:
         model = Lesson
+        fields = ['instrument', 'number_of_lessons', 'interval', 'duration', 'teacher']
+        
 
-    SELVALUE_LESSON = (
+    """SELVALUE_LESSON = (
         ('violin','violin'),
         ('piano','piano'),
         ('giutar','guitar'),
@@ -34,6 +37,7 @@ class Student_Request_Form(forms.Form):
     duration = forms.CharField(max_length=10, widget=forms.widgets.Select(choices=SELVALUE_DURATION))
 
 
-    teacher = forms.CharField(max_length=20)
+    teacher = forms.CharField(max_length=20)"""
+        
 
 
