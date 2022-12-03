@@ -24,6 +24,10 @@ urlpatterns = [
     path('', views.home),
     path('log_in/', views.log_in),
     path('sign_up/', views.sign_up),
+    # URLs for Student
+    path('', views.student_dashboard, name='student_dashboard'),
+    path('student_request_form/', views.student_request_form, name='student_request_form'),
+    path('view_request_form/', views.view_request_form, name='view_request_form'),
     path('admin_requests/', views.admin_requests),
     path("admin_requests/edit/<request_id>", views.admin_edit_requests),
     path("admin_requests/delete/<request_id>", views.admin_delete_requests)

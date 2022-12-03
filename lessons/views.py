@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .models import Request
 
+from django.shortcuts import render
+from .forms import Student_Request_Form
+from .models import Lesson
 
 # Create your views here.
 def home(request):
@@ -63,3 +66,18 @@ def admin_delete_requests(request, request_id):
         requests = Request.objects.get(id=request_id).delete()
         return redirect('http://localhost:8000/admin_requests/')
     return render(request, 'admin_delete_requests.html', context={'request': request_id})
+
+def student_dashboard(request):
+    return render(request, 'student_dashboard.html')
+
+def student_request_form(request):
+    if request.method == 'POST':
+        form = Student_Request_Form(request.POST)
+    else:
+        form = Student_Request_Form()
+    return render(request, 'student_request_form.html',{'form':form})
+
+def view_request_form(request):
+    lessons = Lesson.objects.all()
+    return render(request, 'view_request_form.html',{'lessons':lessons})
+

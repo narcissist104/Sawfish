@@ -62,14 +62,6 @@ class Invoice(models.Model):
     def __str__(self):
         return str(self.invoiceNum)
 
-class Lesson(models.Model):
-    title = models.CharField(max_length=20)
-    duration = models.IntegerField()
-    student_id = models.CharField(max_length=30)
-    teacher_id = models.CharField(max_length=30)
-    def __str__(self):
-        return str(self.title)
-
 class Request(models.Model):
     student_id = models.CharField(max_length=30)
     # Store the availability as a reference to the dates within the availability database
@@ -83,3 +75,37 @@ class Request(models.Model):
 class Availability(models.Model):
     request_id = models.CharField(max_length=30, default="")
     date = models.DateField()
+class Lesson(models.Model):
+    SELVALUE_LESSON = (
+        ('violin','violin'),
+        ('piano','piano'),
+        ('giutar','guitar'),
+    )
+    select_lesson = models.CharField(max_length=20, choices=SELVALUE_LESSON)
+
+    start_date = models.DateTimeField('enter your start time', null=True)
+
+    SELVALUE__NUMBER_OF_LESSONS = (
+        ('24','24'),
+        ('48','48'),
+        ('72','72'),
+        ('96','96'),
+    )
+    number_of_lessons = models.CharField(max_length=10, choices=SELVALUE__NUMBER_OF_LESSONS)
+
+    SELVALUE_INTERVAL = (
+        ('1','1 lesson every week'),
+        ('2','2 lessons every week'),
+    )
+    interval = models.CharField(max_length=20, choices=SELVALUE_INTERVAL)
+
+    SELVALUE_DURATION = (
+        ('30','30 minutes'),
+        ('45','45 minutes'),
+        ('60','60 minutes'),
+    )
+    duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
+
+    teacher = models.CharField(max_length=20)
+
+
