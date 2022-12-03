@@ -8,6 +8,8 @@
           <h1 class="cover-heading">Admin Requests</h1>
           <p class="cover-text">Are you sure you want to delete request ID: {{ request }}?</p>
           <div class="row col-sm-20 col-md-9 offset-md--3">
+            <a href='http://localhost:8000/admin_requests/' class="btn btn-lg">Cancel</a>
+            <br/>
           <form action='{{req.id}}' method="post">
             {% csrf_token %}
             <input type="submit" value="Confirm" class="btn btn-primary">
