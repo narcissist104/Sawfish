@@ -1,7 +1,7 @@
 """Forms for the microblogs app."""
 from django import forms
 from django.core.validators import RegexValidator
-from .models import User, Lesson
+from .models import User, Lesson, Request
 
 class LogInForm(forms.Form):
     """Form enabling registered users to log in."""
@@ -62,12 +62,36 @@ class EditRequestForm(forms.Form):
     topic = forms.CharField(label="topic")
     teacher_id = forms.IntegerField(label="teacher_id")
 
+class EditAccount(forms.Form):
+    """Form enabling request edits by admins"""
+    username = forms.CharField(label="username")
+    first_name = forms.CharField(label="first_name")
+    last_name = forms.CharField(label="last_name")
+    email = forms.EmailField(label="email")
+    bio = forms.CharField(label="bio")
+    SELVALUE_LESSON = (
+            ('student','student'),
+            ('admin','admin'),
+            ('director','director'),
+        )
+    type = forms.CharField(max_length=20, widget=forms.widgets.Select(choices=SELVALUE_LESSON))
+    def save(self):
+        """Create a new user."""
+        user = User.objects.create_user(
+            self.cleaned_data.get('username'),
+            first_name=self.cleaned_data.get('first_name'),
+            last_name=self.cleaned_data.get('last_name'),
+            email=self.cleaned_data.get('email'),
+            bio=self.cleaned_data.get('bio'),
+            password=self.cleaned_data.get('new_password'),
+        )
+        return user
 
 class Student_Request_Form(forms.ModelForm):
     
     class Meta:
         model = Lesson
-        fields = ['instrument', 'number_of_lessons', 'interval', 'duration', 'teacher']
+        fields = ['instrument', 'number_of_lessons', 'interval', 'duration', 'teacher_id']
         
 
     """SELVALUE_LESSON = (

@@ -18,6 +18,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50, blank=False)
     email = models.EmailField(unique=True, blank=False)
     bio = models.CharField(max_length=520, blank=True)
+    type = models.CharField(max_length=15, default="student")
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
@@ -32,7 +33,7 @@ class User(AbstractUser):
         """Return a URL to a miniature version of the user's gravatar."""
         return self.gravatar(size=60)
     def __str__(self):
-        return str(self.name)
+        return str(self.username)
 
 # Create your models here.
 class Student(models.Model):
@@ -76,6 +77,8 @@ class Availability(models.Model):
     request_id = models.CharField(max_length=30, default="")
     date = models.DateField()
 class Lesson(models.Model):
+    student_id = models.CharField(max_length=20)
+
     SELVALUE_LESSON = (
         ('violin','violin'),
         ('piano','piano'),
@@ -106,7 +109,7 @@ class Lesson(models.Model):
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
 
-    teacher = models.CharField(max_length=20)
+    teacher_id = models.CharField(max_length=20)
     
 
 

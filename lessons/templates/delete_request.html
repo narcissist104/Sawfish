@@ -5,10 +5,10 @@
     <div class="row h-100">
       <div class="col-12 my-auto">
         <div class="card cover-card offset-sm-2 offset-md-4 offset-lg-7">
-          <h1 class="cover-heading">Admin Requests</h1>
+          <h1 class="cover-heading">Manage Requests</h1>
           <p class="cover-text">Are you sure you want to delete request ID: {{ request }}?</p>
           <div class="row col-sm-20 col-md-9 offset-md--3">
-            <a href='http://localhost:8000/admin_requests/' class="btn btn-lg">Cancel</a>
+            <a href='http://localhost:8000/manage_requests/' class="btn btn-lg">Cancel</a>
             <br/>
           <form action='{{req.id}}' method="post">
             {% csrf_token %}
