@@ -8,9 +8,13 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email', 'bio', 'type')
 
 
+@admin.register(BankAccount)
+class BankAccountAdmin(admin.ModelAdmin):
+    display = 'balance'
+
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ('invoiceNum', 'referNum')
+    list_display = ('invoiceNum', 'referNum', 'bankAccNo')
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
@@ -22,4 +26,8 @@ class RequestAdmin(admin.ModelAdmin):
 
 @admin.register(Availability)
 class AvailabilityAdmin(admin.ModelAdmin):
-    list_display = ("request_id", "date")
+    display = "date"
+
+@admin.register(Request)
+class RequestAdmin(admin.ModelAdmin):
+    list_display = ("student_id", "duration", "interval", "topic", "teacher_id")

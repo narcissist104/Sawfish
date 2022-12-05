@@ -35,9 +35,12 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.username)
 
+class BankAccount(models.Model):
+    balance = models.FloatField()
 class Invoice(models.Model):
     invoiceNum = models.CharField(max_length=30)
     referNum = models.CharField(max_length=30)
+    bankAccNo = models.CharField(max_length=30)
     def __str__(self):
         return str(self.invoiceNum)
 
@@ -77,6 +80,3 @@ class Request(models.Model):
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
     teacher_id = models.CharField(max_length=20)
-
-
-
