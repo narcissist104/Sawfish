@@ -78,7 +78,6 @@ class EditAccount(forms.Form):
         )
     type = forms.CharField(max_length=20, widget=forms.widgets.Select(choices=SELVALUE_LESSON))
     password = forms.CharField(label='Password', widget=forms.PasswordInput(),)
-from .models import Request
 
 class Student_Request_Form(forms.ModelForm):
     

@@ -11,6 +11,7 @@ from .forms import Student_Request_Form
 from .models import Lesson
 
 # Create your views here.
+"""Home page. TODO: auto sign in when user is still logged in"""
 def home(request):
     return render(request, 'home.html')
 
@@ -37,6 +38,7 @@ def log_in(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                """Redirects the user to the correct page"""
                 if user.type == "admin":
                     return redirect('http://localhost:8000/admin_dashboard')
                 elif user.type == "director":
@@ -49,12 +51,14 @@ def log_in(request):
 
 @login_required
 def admin_dashboard(request):
+    """If the user is a student, they can't access this page"""
     if request.user.type == "student":
         return redirect('http://localhost:8000/student_dashboard')
     return render(request, 'admin_dashboard.html')
 @login_required
 def manage_requests(request):
     if request.user.type == "student":
+        """If the user is a student, they can't access this page"""
         return redirect('http://localhost:8000/student_dashboard')
     requests = Request.objects.all()
     return render(request, 'manage_requests.html', {'requests': requests})
@@ -64,10 +68,12 @@ def manage_requests(request):
 def edit_requests(request, request_id):
     req = Request.objects.filter(id=request_id)
     if request.user.type == "student":
+        """If the user is a student, they can't access this page"""
         return redirect('http://localhost:8000/student_dashboard')
     if request.method == 'POST':
         form = EditRequestForm(request.POST)
         if form.is_valid():
+            """Updates the values in the database using the form"""
             instrument = form.cleaned_data.get('instrument')
             availability = form.cleaned_data.get('availability')
             number_of_lessons = form.cleaned_data.get('number_of_lessons')

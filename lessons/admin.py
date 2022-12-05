@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Invoice, Lesson, Request, Availability
+from .models import User, Invoice, Lesson, Request, Availability, BankAccount
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -11,6 +11,12 @@ class UserAdmin(admin.ModelAdmin):
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
     list_display = ('invoiceNum', 'referNum')
+
+
+@admin.register(BankAccount)
+class BankAccountAdmin(admin.ModelAdmin):
+    display = 'balance'
+
 
 @admin.register(Lesson)
 class LessonAdmin(admin.ModelAdmin):
