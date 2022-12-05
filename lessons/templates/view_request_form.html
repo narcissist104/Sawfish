@@ -8,12 +8,20 @@
                 <tr>
                     <th> Lesson </th>
                     <th> Number of Lessons </th>
-                    <th> Lessons per week</th>
+                    <th> INterval</th>
                     <th> Duration </th>
                     <th> Teacher </th>
                 </tr>
                 <tbody>
-                    
+                    {% for r in requests %}
+                    <tr class = "'column">
+                        <td>{{r.instrument}}</td>
+                        <td>{{r.number_of_lessons}}</td>
+                        <td>{{r.interval}}</td>
+                        <td>{{r.duration}}</td>
+                        <td>{{r.teacher}}</td>
+                    </tr>
+                        {% endfor%}
                 </tbody>
             </table>
         

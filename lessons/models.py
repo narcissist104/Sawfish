@@ -85,22 +85,15 @@ class Lesson(models.Model):
         ('giutar','guitar'),
     )
     instrument = models.CharField(max_length=20, choices=SELVALUE_LESSON)
+class Request(models.Model):
 
-    #start_date = models.DateTimeField('enter your start time', null=True)
+    instrument = models.CharField(max_length=20)
 
-    SELVALUE__NUMBER_OF_LESSONS = (
-        ('24','24'),
-        ('48','48'),
-        ('72','72'),
-        ('96','96'),
-    )
-    number_of_lessons = models.CharField(max_length=10, choices=SELVALUE__NUMBER_OF_LESSONS)
+    availibility = models.DateField('enter your start time for the lessons (yyyy-mm-dd)', null=True)
 
-    SELVALUE_INTERVAL = (
-        ('1','1 lesson every week'),
-        ('2','2 lessons every week'),
-    )
-    interval = models.CharField(max_length=20, choices=SELVALUE_INTERVAL)
+    number_of_lessons = models.IntegerField()
+
+    interval = models.IntegerField()
 
     SELVALUE_DURATION = (
         ('30','30 minutes'),
@@ -109,7 +102,9 @@ class Lesson(models.Model):
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
 
+    teacher = models.CharField(max_length=20)
+
     teacher_id = models.CharField(max_length=20)
-    
+
 
 

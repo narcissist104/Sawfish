@@ -88,6 +88,9 @@ def delete_requests(request, request_id):
         return redirect('http://localhost:8000/admin_requests/')
     return render(request, 'delete_request.html', context={'request': request_id})
 
+from .models import Request
+
+# Create your views here.
 
 def student_dashboard(request):
     return render(request, 'student_dashboard.html')
@@ -102,19 +105,16 @@ def student_request_form(request):
         form = Student_Request_Form(request.POST)
 
         if form.is_valid():
-            # requested_instrument = form.cleaned_data.get('instrument')
-            # requested_number_of_lessons = form.cleaned_data.get('number_of_lessons')
-            # requested_interval = form.cleaned_data.get('interval')
-            # requested_duration = form.cleaned_data.get('duration')
-            # requested_teacher = form.cleaned_data.get('teacher')
             form.save()
             return redirect('http://localhost:8000/student_dashboard')
+
     return render(request, 'student_request_form.html', {'form':form})
 
 
 def view_request_form(request):
-    lessons = Request.objects.filter(student_id=request.user.id)
-    return render(request, 'view_request_form.html', {'lessons': lessons})
+    requests = Request.objects.all()
+    return render(request, 'view_request_form.html',{'requests':requests})
+
 @login_required
 def director_dashboard(request):
     if request.user.type != "director":
@@ -126,6 +126,7 @@ def manage_accounts(request):
         return redirect('http://localhost:8000/')
     accounts = User.objects.all()
     return render(request, 'manage_accounts.html', {'accounts': accounts})
+
 
 @login_required
 def delete_account(request, account_id):
