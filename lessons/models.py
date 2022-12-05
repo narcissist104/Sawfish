@@ -43,6 +43,7 @@ class Invoice(models.Model):
         return str(self.invoiceNum)
 class BankAccount(models.Model):
     balance = models.FloatField()
+
 # Stores the dates in the availability database.
 class Availability(models.Model):
     request_id = models.CharField(max_length=30, default="")
@@ -79,6 +80,3 @@ class Request(models.Model):
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
     teacher_id = models.CharField(max_length=20)
-
-
-

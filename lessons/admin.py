@@ -10,7 +10,7 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
-    list_display = ('invoiceNum', 'referNum')
+    list_display = ('invoiceNum', 'referNum','bank_id')
 
 
 @admin.register(BankAccount)
@@ -22,9 +22,11 @@ class BankAccountAdmin(admin.ModelAdmin):
 class LessonAdmin(admin.ModelAdmin):
     list_display = ("student_id", "instrument", "number_of_lessons", "interval", "duration", "teacher_id")
 
+
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     list_display = ("student_id", "instrument", "availability", "number_of_lessons", "interval", "teacher_id")
+
 
 @admin.register(Availability)
 class AvailabilityAdmin(admin.ModelAdmin):
