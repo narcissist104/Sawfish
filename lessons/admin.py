@@ -1,24 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Student, Admin, Director, Invoice, Lesson, Request, Availability
-
-@admin.register(Student)
-class StudentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'password')
+from .models import User, Invoice, Lesson, Request, Availability
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email', 'bio', 'type')
 
-
-@admin.register(Admin)
-class AdminAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'password')
-
-@admin.register(Director)
-class DirectorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'password')
 
 @admin.register(Invoice)
 class InvoiceAdmin(admin.ModelAdmin):
@@ -30,7 +18,7 @@ class LessonAdmin(admin.ModelAdmin):
 
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
-    list_display = ("student_id", "duration", "interval", "topic", "teacher_id")
+    list_display = ("student_id", "instrument", "availability", "number_of_lessons", "interval", "teacher_id")
 
 @admin.register(Availability)
 class AvailabilityAdmin(admin.ModelAdmin):

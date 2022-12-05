@@ -10,17 +10,22 @@
           <table>
             <tr>
               <th>Student ID</th>
-              <th>Duration</th>
+              <th>Instrument</th>
+              <th>Availability</th>
+              <th>Number of Lessons</th>
               <th>Interval</th>
-              <th>Topic</th>
+              <th>Teacher ID</th>
+
             </tr>
             <tbody>
             {% for request in requests %}
               <tr class="'column">
                 <td>{{request.student_id}}</td>
-                <td>{{request.duration}}</td>
+                <td>{{request.instrument}}</td>
+                <td>{{request.availability}}</td>
+                <td>{{request.number_of_lessons}}</td>
                 <td>{{request.interval}}</td>
-                <td>{{request.topic}}</td>
+                <td>{{request.teacher_id}}</td>
                 <td>
                   <a href='edit/{{request.id}}' class="btn btn-lg">Edit</a>
                 </td>

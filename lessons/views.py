@@ -61,20 +61,20 @@ def manage_requests(request):
 
 @login_required
 def edit_requests(request, request_id):
-    req = Request.objects.get(id=request_id)
+    req = Request.objects.filter(id=request_id)
     if request.user.type == "student":
         return redirect('http://localhost:8000/student_dashboard')
     if request.method == 'POST':
         form = EditRequestForm(request.POST)
         if form.is_valid():
-            student_id = form.cleaned_data.get('student_id')
-            duration = form.cleaned_data.get('duration')
+            instrument = form.cleaned_data.get('instrument')
+            availability = form.cleaned_data.get('availability')
+            number_of_lessons = form.cleaned_data.get('number_of_lessons')
             interval = form.cleaned_data.get('interval')
-            topic = form.cleaned_data.get('topic')
+            duration = form.cleaned_data.get('duration')
             teacher_id = form.cleaned_data.get('teacher_id')
-            req.update(student_id=student_id, duration=duration,
-                                                               interval=interval, topic=topic, teacher_id=teacher_id)
-            return redirect('http://localhost:8000/admin_requests/')
+            req.update(instrument=instrument, availability=availability, number_of_lessons=number_of_lessons, interval=interval, duration=duration, teacher_id=teacher_id)
+            return redirect('http://localhost:8000/manage_requests/')
     form = EditRequestForm()
     return render(request, 'edit_request.html', context={'request': req, 'form': form})
 
@@ -97,22 +97,25 @@ def student_dashboard(request):
 
 
 def student_request_form(request):
-
     form = Student_Request_Form()
-
     if request.method == 'POST':
-
         form = Student_Request_Form(request.POST)
-
         if form.is_valid():
-            form.save()
+            instrument = form.cleaned_data.get('instrument')
+            availability = form.cleaned_data.get('availability')
+            number_of_lessons = form.cleaned_data.get('number_of_lessons')
+            interval = form.cleaned_data.get('interval')
+            teacher_id = form.cleaned_data.get('teacher_id')
+            req = Request(student_id=request.user.id, instrument=instrument,
+                       availability=availability, number_of_lessons=number_of_lessons, interval=interval,
+                       teacher_id=teacher_id)
+            req.save()
             return redirect('http://localhost:8000/student_dashboard')
-
     return render(request, 'student_request_form.html', {'form':form})
 
 
 def view_request_form(request):
-    requests = Request.objects.all()
+    requests = Request.objects.filter(student_id=request.user.id)
     return render(request, 'view_request_form.html',{'requests':requests})
 
 @login_required

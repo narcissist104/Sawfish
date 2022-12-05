@@ -35,42 +35,11 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.username)
 
-# Create your models here.
-class Student(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=20)
-    def __str__(self):
-        return str(self.name)
-
-class Admin(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=20)
-    def __str__(self):
-        return str(self.name)
-
-class Director(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=20)
-    def __str__(self):
-        return str(self.name)
-
 class Invoice(models.Model):
     invoiceNum = models.CharField(max_length=30)
     referNum = models.CharField(max_length=30)
     def __str__(self):
         return str(self.invoiceNum)
-
-class Request(models.Model):
-    student_id = models.CharField(max_length=30)
-    # Store the availability as a reference to the dates within the availability database
-    duration = models.IntegerField()
-    # Interval stored as how many times per week
-    interval = models.IntegerField()
-    topic = models.CharField(max_length=20, default="")
-    teacher_id = models.CharField(max_length=30, default="")
 
 # Stores the dates in the availability database.
 class Availability(models.Model):
@@ -85,25 +54,28 @@ class Lesson(models.Model):
         ('giutar','guitar'),
     )
     instrument = models.CharField(max_length=20, choices=SELVALUE_LESSON)
-class Request(models.Model):
-
-    instrument = models.CharField(max_length=20)
-
-    availibility = models.DateField('enter your start time for the lessons (yyyy-mm-dd)', null=True)
-
     number_of_lessons = models.IntegerField()
-
     interval = models.IntegerField()
+    SELVALUE_DURATION = (
+        ('30', '30 minutes'),
+        ('45', '45 minutes'),
+        ('60', '60 minutes'),
+    )
+    duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
+    teacher_id = models.CharField(max_length=20)
 
+class Request(models.Model):
+    student_id = models.CharField(max_length=30)
+    instrument = models.CharField(max_length=20)
+    availability = models.DateField('enter your start time for the lessons (yyyy-mm-dd)', null=True)
+    number_of_lessons = models.IntegerField()
+    interval = models.IntegerField()
     SELVALUE_DURATION = (
         ('30','30 minutes'),
         ('45','45 minutes'),
         ('60','60 minutes'),
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
-
-    teacher = models.CharField(max_length=20)
-
     teacher_id = models.CharField(max_length=20)
 
 

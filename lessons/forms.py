@@ -56,11 +56,13 @@ class SignUpForm(forms.ModelForm):
 
 class EditRequestForm(forms.Form):
     """Form enabling request edits by admins"""
-    student_id = forms.IntegerField(label="student_id")
-    duration = forms.IntegerField(label="duration")
-    interval = forms.IntegerField(label="availability")
-    topic = forms.CharField(label="topic")
+    instrument = forms.CharField(label="instrument")
+    availability = forms.DateField(label="availability")
+    number_of_lessons = forms.IntegerField(label="number_of_lessons")
+    interval = forms.IntegerField(label="interval")
+    duration = forms.CharField(max_length=10)
     teacher_id = forms.IntegerField(label="teacher_id")
+
 
 class EditAccount(forms.Form):
     """Form enabling request edits by admins"""
@@ -92,12 +94,11 @@ class Student_Request_Form(forms.ModelForm):
     
     class Meta:
         model = Request
-        fields = ['instrument', 'availibility', 'number_of_lessons', 'interval', 'duration', 'teacher']
-        
+        fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration', 'teacher_id']
 
 
 
-    SELVALUE_INTERVAL = (
+    """SELVALUE_INTERVAL = (
         ('1','1 lesson every week'),
         ('2','2 lessons every week'),
     )
