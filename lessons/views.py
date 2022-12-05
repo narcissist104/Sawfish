@@ -29,6 +29,7 @@ def sign_up(request):
 
 def log_in(request):
     if request.method == 'POST':
+        print(request.user.username)
         form = LogInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
@@ -85,7 +86,7 @@ def delete_requests(request, request_id):
         return redirect('http://localhost:8000/student_dashboard')
     if request.method == 'POST':
         requests = Request.objects.get(id=request_id).delete()
-        return redirect('http://localhost:8000/admin_requests/')
+        return redirect('http://localhost:8000/manage_requests/')
     return render(request, 'delete_request.html', context={'request': request_id})
 
 from .models import Request
@@ -121,12 +122,12 @@ def view_request_form(request):
 @login_required
 def director_dashboard(request):
     if request.user.type != "director":
-        return redirect('http://localhost:8000/')
+        return redirect('http://localhost:8000/admin_dashboard')
     return render(request, 'director_dashboard.html')
 @login_required
 def manage_accounts(request):
     if request.user.type != "director":
-        return redirect('http://localhost:8000/')
+        return redirect('http://localhost:8000/admin_dashboard')
     accounts = User.objects.all()
     return render(request, 'manage_accounts.html', {'accounts': accounts})
 
@@ -134,7 +135,7 @@ def manage_accounts(request):
 @login_required
 def delete_account(request, account_id):
     if request.user.type != "director":
-        return redirect('http://localhost:8000/')
+        return redirect('http://localhost:8000/admin_dashboard')
     if request.method == 'POST':
         requests = User.objects.get(id=account_id).delete()
         return redirect('http://localhost:8000/director_dashboard/')
@@ -143,19 +144,22 @@ def delete_account(request, account_id):
 @login_required
 def create_account(request):
     if request.user.type != "director":
-        return redirect('http://localhost:8000/')
+        return redirect('http://localhost:8000/admin_dashboard')
     if request.method == 'POST':
         form = EditAccount(request.POST)
         if form.is_valid():
+            print('valid')
             form.save()
             return redirect('http://localhost:8000/director_dashboard/')
+        else:
+            print('invalid details')
     form = EditAccount()
     return render(request, 'add_account.html', context={'form': form})
 
 @login_required
 def edit_account(request, account_id):
     if request.user.type != "director":
-        return redirect('http://localhost:8000/')
+        return redirect('http://localhost:8000/admin_dashboard')
     if request.method == 'POST':
         form = EditAccount(request.POST)
         if form.is_valid():
@@ -165,8 +169,10 @@ def edit_account(request, account_id):
             email = form.cleaned_data.get('email')
             bio = form.cleaned_data.get('bio')
             type = form.cleaned_data.get('type')
-            req = Request.objects.filter(id=account_id).update(username=username, first_name=first_name,
+            password = form.cleaned_data.get('password')
+            user = User.objects.filter(id=account_id).update(username=username, first_name=first_name,
                                                                last_name=last_name, email=email, bio=bio, type=type)
+            User.objects.get(id=account_id).set_password(password)
             return redirect('http://localhost:8000/director_dashboard/')
     form = EditAccount()
     return render(request, 'edit_account.html', context={'request': account_id, 'form': form})

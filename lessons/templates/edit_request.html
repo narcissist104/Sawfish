@@ -11,7 +11,7 @@
           <form action='{{req.id}}' method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <a href='http://localhost:8000/manage_requests/' class="btn btn-lg">Cancel</a>
+            <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Cancel</a>
             <input type="submit" value="Submit" class="btn btn-primary">
           </form>
           </div>

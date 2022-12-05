@@ -9,22 +9,20 @@
           <p class="cover-text">View all requests</p>
           <table>
             <tr>
+              <th>Request ID</th>
               <th>Student ID</th>
               <th>Instrument</th>
-              <th>Availability</th>
               <th>Number of Lessons</th>
-              <th>Interval</th>
               <th>Teacher ID</th>
 
             </tr>
             <tbody>
             {% for request in requests %}
               <tr class="'column">
+                <td>{{request.id}}</td>
                 <td>{{request.student_id}}</td>
                 <td>{{request.instrument}}</td>
-                <td>{{request.availability}}</td>
                 <td>{{request.number_of_lessons}}</td>
-                <td>{{request.interval}}</td>
                 <td>{{request.teacher_id}}</td>
                 <td>
                   <a href='edit/{{request.id}}' class="btn btn-lg">Edit</a>
@@ -36,7 +34,7 @@
             {% endfor %}
             </tbody>
           </table>
-          <a href='http://localhost:8000/admin_dashboard/' class="btn btn-lg">Back</a>
+          <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Back</a>
         </div>
       </div>
     </div>

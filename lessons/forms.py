@@ -56,12 +56,12 @@ class SignUpForm(forms.ModelForm):
 
 class EditRequestForm(forms.Form):
     """Form enabling request edits by admins"""
-    instrument = forms.CharField(label="instrument")
-    availability = forms.DateField(label="availability")
-    number_of_lessons = forms.IntegerField(label="number_of_lessons")
-    interval = forms.IntegerField(label="interval")
-    duration = forms.CharField(max_length=10)
-    teacher_id = forms.IntegerField(label="teacher_id")
+    instrument = forms.CharField(label="Instrument")
+    availability = forms.DateField(label="Availability")
+    number_of_lessons = forms.IntegerField(label="Number of Lessons")
+    interval = forms.IntegerField(label="Interval")
+    duration = forms.CharField(label="Duration", max_length=10)
+    teacher_id = forms.IntegerField(label="Teacher ID")
 
 
 class EditAccount(forms.Form):
@@ -77,17 +77,7 @@ class EditAccount(forms.Form):
             ('director','director'),
         )
     type = forms.CharField(max_length=20, widget=forms.widgets.Select(choices=SELVALUE_LESSON))
-    def save(self):
-        """Create a new user."""
-        user = User.objects.create_user(
-            self.cleaned_data.get('username'),
-            first_name=self.cleaned_data.get('first_name'),
-            last_name=self.cleaned_data.get('last_name'),
-            email=self.cleaned_data.get('email'),
-            bio=self.cleaned_data.get('bio'),
-            password=self.cleaned_data.get('new_password'),
-        )
-        return user
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(),)
 from .models import Request
 
 class Student_Request_Form(forms.ModelForm):
