@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Sign up</h1>
+      <div class=row align-items-center>
+        <form action='' method="post">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="Sign up" class="btn btn-primary">
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
