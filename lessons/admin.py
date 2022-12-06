@@ -28,6 +28,7 @@ class RequestAdmin(admin.ModelAdmin):
     list_display = ("student_id", "instrument", "availability", "number_of_lessons", "interval", "teacher_id")
 
 
+
 @admin.register(Availability)
 class AvailabilityAdmin(admin.ModelAdmin):
     list_display = ("request_id", "date")

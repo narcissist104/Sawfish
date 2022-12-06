@@ -30,7 +30,6 @@ def sign_up(request):
 
 def log_in(request):
     if request.method == 'POST':
-        print(request.user.username)
         form = LogInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
@@ -39,9 +38,10 @@ def log_in(request):
             if user is not None:
                 login(request, user)
                 """Redirects the user to the correct page"""
-                if user.type == "admin":
+                print(request.user.type)
+                if request.user.type == "admin":
                     return redirect('http://localhost:8000/admin_dashboard')
-                elif user.type == "director":
+                elif request.user.type == "director":
                     return redirect('http://localhost:8000/director_dashboard')
                 else:
                     return redirect('http://localhost:8000/student_dashboard')
@@ -154,11 +154,8 @@ def create_account(request):
     if request.method == 'POST':
         form = EditAccount(request.POST)
         if form.is_valid():
-            print('valid')
             form.save()
             return redirect('http://localhost:8000/director_dashboard/')
-        else:
-            print('invalid details')
     form = EditAccount()
     return render(request, 'add_account.html', context={'form': form})
 
