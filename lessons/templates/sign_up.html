@@ -7,7 +7,7 @@
       <div class=row align-items-center>
         <form action='' method="post">
             {% csrf_token %}
-            {{form}}
+            {% include 'partials/bootstrap_form.html' with form=form %}
             <input type="submit" value="Sign up" class="btn btn-primary">
           </form>
         </div>
