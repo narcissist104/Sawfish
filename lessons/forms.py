@@ -54,16 +54,6 @@ class SignUpForm(forms.ModelForm):
         )
         return user
 
-class EditRequestForm(forms.Form):
-    """Form enabling request edits by admins"""
-    instrument = forms.CharField(label="Instrument")
-    availability = forms.DateField(label="Availability")
-    number_of_lessons = forms.IntegerField(label="Number of Lessons")
-    interval = forms.IntegerField(label="Interval")
-    duration = forms.CharField(label="Duration", max_length=10)
-    teacher_id = forms.IntegerField(label="Teacher ID")
-
-
 class EditAccount(forms.Form):
     """Form enabling request edits by admins"""
     username = forms.CharField(label="username")

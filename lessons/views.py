@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
-from .forms import LogInForm, SignUpForm, EditRequestForm, EditAccount
+from .forms import LogInForm, SignUpForm, EditAccount
 from django import forms
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .models import Request, User
+from .models import Request, User, Teacher
 
 from django.shortcuts import render
 from .forms import Student_Request_Form
@@ -70,7 +70,9 @@ def edit_requests(request, request_id):
         """If the user is a student, they can't access this page"""
         return redirect('http://localhost:8000/student_dashboard')
     if request.method == 'POST':
-        form = EditRequestForm(request.POST)
+        form = Student_Request_Form(request.POST)
+        teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+        form.fields['teacher_id'].choices = teacherTable
         if form.is_valid():
             """Updates the values in the database using the form"""
             instrument = form.cleaned_data.get('instrument')
@@ -83,7 +85,9 @@ def edit_requests(request, request_id):
             req.update(instrument=instrument, availability=availability, number_of_lessons=number_of_lessons, interval=interval, duration=duration, teacher_id=teacher_id)
             return redirect('http://localhost:8000/manage_requests/')
     req = Request.objects.get(id=request_id)
-    form = EditRequestForm(initial={'instrument':req.instrument, 'availability':req.availability,'number_of_lessons':req.number_of_lessons,'interval':req.interval,'duration':req.duration,'teacher_id':req.teacher_id})
+    form = Student_Request_Form(initial={'instrument':req.instrument, 'availability':req.availability,'number_of_lessons':req.number_of_lessons,'interval':req.interval,'duration':req.duration,'teacher_id':req.teacher_id})
+    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    form.fields['teacher_id'].choices = teacherTable
     return render(request, 'edit_request.html', context={'request': req, 'form': form})
 
 
@@ -113,12 +117,16 @@ def student_request_form(request):
             availability = form.cleaned_data.get('availability')
             number_of_lessons = form.cleaned_data.get('number_of_lessons')
             interval = form.cleaned_data.get('interval')
+            duration = form.cleaned_data.get('duration')
             teacher_id = form.cleaned_data.get('teacher_id')
+            print(teacher_id)
             req = Request(student_id=request.user.id, instrument=instrument,
-                       availability=availability, number_of_lessons=number_of_lessons, interval=interval,
+                       availability=availability, number_of_lessons=number_of_lessons, interval=interval,duration=duration,
                        teacher_id=teacher_id)
             req.save()
             return redirect('http://localhost:8000/student_dashboard')
+    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    form.fields['teacher_id'].choices = teacherTable
     return render(request, 'student_request_form.html', {'form':form})
 
 
