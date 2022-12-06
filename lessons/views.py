@@ -66,7 +66,6 @@ def manage_requests(request):
 
 @login_required
 def edit_requests(request, request_id):
-    req = Request.objects.filter(id=request_id)
     if request.user.type == "student":
         """If the user is a student, they can't access this page"""
         return redirect('http://localhost:8000/student_dashboard')
@@ -80,9 +79,11 @@ def edit_requests(request, request_id):
             interval = form.cleaned_data.get('interval')
             duration = form.cleaned_data.get('duration')
             teacher_id = form.cleaned_data.get('teacher_id')
+            req = Request.objects.filter(id=request_id)
             req.update(instrument=instrument, availability=availability, number_of_lessons=number_of_lessons, interval=interval, duration=duration, teacher_id=teacher_id)
             return redirect('http://localhost:8000/manage_requests/')
-    form = EditRequestForm()
+    req = Request.objects.get(id=request_id)
+    form = EditRequestForm(initial={'instrument':req.instrument, 'availability':req.availability,'number_of_lessons':req.number_of_lessons,'interval':req.interval,'duration':req.duration,'teacher_id':req.teacher_id})
     return render(request, 'edit_request.html', context={'request': req, 'form': form})
 
 
@@ -161,6 +162,7 @@ def create_account(request):
 
 @login_required
 def edit_account(request, account_id):
+    user = User.objects.get(id=account_id)
     if request.user.type != "director":
         return redirect('http://localhost:8000/admin_dashboard')
     if request.method == 'POST':
@@ -173,9 +175,9 @@ def edit_account(request, account_id):
             bio = form.cleaned_data.get('bio')
             type = form.cleaned_data.get('type')
             password = form.cleaned_data.get('password')
-            user = User.objects.filter(id=account_id).update(username=username, first_name=first_name,
+            userUpdate = User.objects.filter(id=account_id).update(username=username, first_name=first_name,
                                                                last_name=last_name, email=email, bio=bio, type=type)
-            User.objects.get(id=account_id).set_password(password)
+            user.set_password(password)
             return redirect('http://localhost:8000/director_dashboard/')
-    form = EditAccount()
+    form = EditAccount(initial={'username':user.username,'first_name':user.first_name,'last_name':user.last_name,'email':user.email,'bio':user.bio,'type':user.type})
     return render(request, 'edit_account.html', context={'request': account_id, 'form': form})
