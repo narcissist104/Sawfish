@@ -2,10 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Request(models.Model):
-
+    """Request model used for studnet request a lesson"""
     instrument = models.CharField(max_length=20)
 
-    availibility = models.DateField('enter your start time for the lessons (yyyy-mm-dd)', null=True)
+    availibility = models.DateField('enter your start date for the lessons (yyyy-mm-dd)', null=True)
     
     number_of_lessons = models.IntegerField()
 

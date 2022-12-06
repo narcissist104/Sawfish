@@ -1,0 +1,13 @@
+<html>
+<h1> Update Request </h1>
+<form action="{{req.id}}" method='post'>
+
+    {% csrf_token %}
+    {% for f in form %}
+    {{f.label}}
+    {{f}} <br>
+    {% endfor %}
+        <a href="{% url 'view_request_form' %}" class='btn btn-lg'> Cancel </a>
+        <input type='submit' value="Update" class='btn btn-primary'>
+</form>
+</html>

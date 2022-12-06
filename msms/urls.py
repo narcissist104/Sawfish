@@ -24,6 +24,9 @@ urlpatterns = [
     path('', views.student_dashboard, name='student_dashboard'),
     path('student_request_form/', views.student_request_form, name='student_request_form'),
     path('view_request_form/', views.view_request_form, name='view_request_form'),
+    path('view_request_form/edit/<request_id>', views.student_edit_request),
+    path('view_request_form/delete/<request_id>', views.student_delete_request)
+
     
 
 ]
