@@ -5,17 +5,14 @@
  .alert {
     border-radius: 0px;
   }
-  
-  nav{
-    padding: 0;
-  }
+
+
   /*
    * Cover page
    */
   
   .content {
-    padding-top: 10px;
-    color: white;
+    padding-top: 0px;
   }
   
   #cover-image {
@@ -36,9 +33,6 @@
       align-items: center;
   }
   
-  /*
-   * Cover page
-   */
   h1.cover-heading {
     font-size: 4rem;
   }
@@ -59,7 +53,6 @@
   .cover-card-block {
     opacity: 1
   }
-
   
   
 

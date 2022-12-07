@@ -1,25 +1,21 @@
-{% extends 'base.html'%}
-{% block body%}
-<html>
-    <head>
-        <title> Student Request Form</title>
-    </head>
-        <body>
-            <h1>Student Request Form</h1>
-            <p>Please enter the details below</p>
-            
-            <form action='' method='post'>
-                {% csrf_token %}
-                {% include 'partials/bootstrap_form.html' with form=form %}
+{% extends 'base_content.html'%}
+{% block content%}
+<div class='container vh-100'>
+    <h1>Student Request Form</h1>
+    <p>Please enter the details of your lesson request below</p>
+    
+    <form action='' method='post'>
+        {% csrf_token %}
+        {% include 'partials/bootstrap_form.html' with form=form %}
 
-                <div>
-                hint: <br>
-                interval: how many lessons per week <br>
-                </div>
+        <div>
+        hint: <br>
+        interval: how many lessons per week <br>
+        </div>
+        <div>
+        <button type="submit" value='submit'class="btn btn-primary btn-lg mt-2">Submit</button>
+    </form>
+</div
 
-            <input type='submit' value='submit'>
-        </form>
 
-        </body>
-</html>
 {% endblock%}
