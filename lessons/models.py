@@ -20,6 +20,8 @@ class Request(models.Model):
 
     teacher = models.CharField(max_length=20)
 
+    status = models.BooleanField(default=False)
+
     
 
 
