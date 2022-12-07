@@ -1,7 +1,7 @@
 """Forms for the microblogs app."""
 from django import forms
 from django.core.validators import RegexValidator
-from .models import User, Lesson, Request
+from .models import User, Lesson, Request, Teacher
 
 class LogInForm(forms.Form):
     """Form enabling registered users to log in."""
@@ -73,7 +73,10 @@ class Student_Request_Form(forms.ModelForm):
     
     class Meta:
         model = Request
-        fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration', 'teacher_id']
+        fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration']
+
+    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    teacher_id = forms.ChoiceField(choices=teacherTable)
 
 
 

@@ -63,6 +63,15 @@ def manage_requests(request):
     requests = Request.objects.all()
     return render(request, 'manage_requests.html', {'requests': requests})
 
+@login_required
+def book_request(request, request_id):
+    if request.user.type == "student":
+        """If the user is a student, they can't access this page"""
+        return redirect('http://localhost:8000/student_dashboard')
+    req = Request.objects.filter(id=request_id)
+    reqObject = Request.objects.get(id=request_id)
+    req.update(booked=not reqObject.booked)
+    return redirect('http://localhost:8000/manage_requests/')
 
 @login_required
 def edit_requests(request, request_id):
@@ -125,8 +134,6 @@ def student_request_form(request):
                        teacher_id=teacher_id)
             req.save()
             return redirect('http://localhost:8000/student_dashboard')
-    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
-    form.fields['teacher_id'].choices = teacherTable
     return render(request, 'student_request_form.html', {'form':form})
 
 

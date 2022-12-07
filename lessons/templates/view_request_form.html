@@ -14,21 +14,21 @@
                         <th> Interval</th>
                         <th> Duration </th>
                         <th> Teacher </th>
-                        <th> Status </th>
+                        <th> Booked </th>
                 </tr>
             </thead>
                 <tbody>
                     
                     {% for r in requests %}
                     <tr class = "column">
-                        {% if r.status == False %}
+                        {% if r.booked == False %}
                         <td>{{r.instrument}}</td>
                         <td>{{r.availibility}}</td>
                         <td>{{r.number_of_lessons}}</td>
                         <td>{{r.interval}}</td>
                         <td>{{r.duration}}</td>
-                        <td>{{r.teacher}}</td>
-                        <td>{{r.status}}</td>
+                        <td>{{r.teacher_id}}</td>
+                        <td>{{r.booked}}</td>
                         <td>
                             <a href="edit/{{r.id}}" class='btn btn-lg'>Edit</a>
                         </td>
@@ -36,14 +36,14 @@
                             <a href="delete/{{r.id}}" class='btn btn-lg'>Delete</a>
                         </td>
 
-                        {% elif r.status == True %}
+                        {% elif r.booked == True %}
                         <td>{{r.instrument}}</td>
                         <td>{{r.availibility}}</td>
                         <td>{{r.number_of_lessons}}</td>
                         <td>{{r.interval}}</td>
                         <td>{{r.duration}}</td>
-                        <td>{{r.teacher}}</td>
-                        <td>{{r.status}}</td>
+                        <td>{{r.teacher_id}}</td>
+                        <td>{{r.booked}}</td>
                         <td> booked </td>
                         {% endif %}
                     </tr>

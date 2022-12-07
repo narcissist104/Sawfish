@@ -31,6 +31,7 @@ urlpatterns = [
     # URLs for Admins
     path('admin_dashboard/', views.admin_dashboard),
     path('manage_requests/', views.manage_requests),
+    path("manage_requests/book/<request_id>", views.book_request),
     path("manage_requests/edit/<request_id>", views.edit_requests),
     path("manage_requests/delete/<request_id>", views.delete_requests),
     # URLs for Directors

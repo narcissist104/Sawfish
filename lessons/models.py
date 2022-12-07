@@ -85,5 +85,6 @@ class Request(models.Model):
         ('60','60 minutes'),
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
-    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
-    teacher_id = models.IntegerField(max_length=20, choices=teacherTable)
+    booked = models.BooleanField(default=False)
+    teacher_id = models.IntegerField(max_length=20, choices=(()))
+    # teacher_id = models.CharField(max_length=20)
