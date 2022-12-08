@@ -40,15 +40,15 @@ class TestViews(TestCase):
         self.assertTemplateUsed(response, 'base.html')
         self.assertTemplateUsed(response, 'log_in.html')
 
-    def test_admin_dashboard_page_GET(self):
-        response = self.client.get(self.admin_dashboard_url)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'admin_dashboard.html')
+    # def test_admin_dashboard_page_GET(self):
+    #     response = self.client.get(self.admin_dashboard_url)
+    #     self.assertEquals(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'admin_dashboard.html')
 
-    def test_manage_requests_page_GET(self):
-        response = self.client.get(self.manage_requests_url)
-        self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'manage_requests.html')
+    # def test_manage_requests_page_GET(self):
+    #     response = self.client.get(self.manage_requests_url)
+    #     self.assertEquals(response.status_code, 200)
+    #     self.assertTemplateUsed(response, 'manage_requests.html')
     
     # def test_sign_up_POST_creates_new_user(self):
     #     response = self.client.post(self.sign_up_url), {
