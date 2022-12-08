@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base_content.html'%}
+{%block content%}
 <div id="cover-image">
   <div class="container vh-100">
     <div class="row h-100">
@@ -7,15 +7,15 @@
         <div class="card cover-card offset-sm-2 offset-md-4 offset-lg-7">
           <h1 class="cover-heading">Director Dashboard</h1>
           <p class="cover-text">View all accounts</p>
-          <table>
+          <table class='table table-striped'>
             <tr>
-              <th>Account ID</th>
-              <th>Username</th>
-              <th>Type</th>
+              <th scope='col'>Account ID</th>
+              <th scope='col'>Username</th>
+              <th scope='col'>Type</th>
             </tr>
             <tbody>
             {% for account in accounts %}
-              <tr class="'column">
+              <tr class="column">
                 <td>{{account.id}}</td>
                 <td>{{account.username}}</td>
                 <td>{{account.type}}</td>
@@ -29,9 +29,9 @@
             {% endfor %}
             </tbody>
           </table>
+          <a href={% url 'create_account' %} class="btn btn-lg">Create Account</a>
+          <a href={% url 'director_dashboard' %} class="btn btn-lg">Back</a>
         </div>
-        <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Back</a>
-          <a href='http://localhost:8000/manage_accounts/add' class="btn btn-lg">Create Account</a>
       </div>
     </div>
   </div>

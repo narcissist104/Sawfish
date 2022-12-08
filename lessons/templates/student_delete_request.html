@@ -1,0 +1,11 @@
+<html>
+<h1> Manage Requests </h1>
+<p> Are you sure you want to delete this request? </p>
+<div class='row sol-sm-20 col-ma-9 offset-md--3'>
+    <form action='{{req.id}}' method='POST'>
+        {% csrf_token %}
+        <a href= "{% url 'view_request_form' %}" class='btn btn-lg'> Cancel</a>
+        <input type='submit' value="Confirm" class='btn btn-primary'>
+    </form>
+</div>
+</html>
