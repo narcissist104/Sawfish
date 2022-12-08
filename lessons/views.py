@@ -69,6 +69,8 @@ def admin_dashboard(request):
     if request.user.type == "student":
         return redirect('student_dashboard')
     return render(request, 'admin_dashboard.html')
+
+
 @login_required(login_url='')
 def manage_requests(request):
     if request.user.type == "student":
@@ -86,6 +88,7 @@ def book_request(request, request_id):
     reqObject = Request.objects.get(id=request_id)
     req.update(booked=not reqObject.booked)
     return redirect('manage_requests')
+
 
 @login_required(login_url='')
 def edit_requests(request, request_id):
