@@ -51,9 +51,9 @@ class BankAccount(models.Model):
     balance = models.FloatField()
 
 # Stores the dates in the availability database.
-class Availability(models.Model):
-    request_id = models.CharField(max_length=30, default="")
-    date = models.DateField()
+# class Availability(models.Model):
+#     request_id = models.CharField(max_length=30, default="")
+#     date = models.DateField()
 class Lesson(models.Model):
     student_id = models.CharField(max_length=20)
 
@@ -76,7 +76,7 @@ class Lesson(models.Model):
 class Request(models.Model):
     student_id = models.CharField(max_length=30)
     instrument = models.CharField(max_length=20)
-    availability = models.DateField('enter your start time for the lessons (yyyy-mm-dd)', null=True)
+    availability = models.CharField(max_length=12, null=True)
     number_of_lessons = models.IntegerField()
     interval = models.IntegerField()
     SELVALUE_DURATION = (

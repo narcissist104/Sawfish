@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, Invoice, Lesson, Request, Availability, BankAccount, Teacher
+from .models import User, Invoice, Lesson, Request, BankAccount, Teacher
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -30,9 +30,3 @@ class TeacherAdmin(admin.ModelAdmin):
 @admin.register(Request)
 class RequestAdmin(admin.ModelAdmin):
     list_display = ("student_id", "instrument", "availability", "number_of_lessons", "interval", "teacher_id")
-
-
-
-@admin.register(Availability)
-class AvailabilityAdmin(admin.ModelAdmin):
-    list_display = ("request_id", "date")
