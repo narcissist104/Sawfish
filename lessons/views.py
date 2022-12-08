@@ -13,7 +13,10 @@ from .models import Lesson
 # Create your views here.
 """Home page. TODO: auto sign in when user is still logged in"""
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_anonymous:
+        return render(request, 'home.html')
+    else:
+        return redirect('profile')
 
 
 def sign_up(request):
@@ -38,7 +41,6 @@ def log_in(request):
             if user is not None:
                 login(request, user)
                 """Redirects the user to the correct page"""
-                print(request.user.type)
                 if request.user.type == "admin":
                     return redirect('admin_dashboard')
                 elif request.user.type == "director":
@@ -48,6 +50,18 @@ def log_in(request):
         messages.add_message(request, messages.ERROR, "The credentials provided were invalid!")
     form = LogInForm()
     return render(request, 'log_in.html', {'form': form})
+
+
+@login_required(login_url='')
+def profile(request):
+    user = User.objects.get(id=request.user.id)
+    return render(request,'profile.html',{'user':user})
+
+
+@login_required(login_url='')
+def log_out(request):
+    logout(request)
+    return redirect('home')
 
 @login_required(login_url='')
 def admin_dashboard(request):

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="cover-image">
+  <div class="container vh-100">
+    <div class="row h-100">
+      <div class="col-12 my-auto">
+        <div class="card cover-card offset-sm-2 offset-md-4 offset-lg-7">
+          <h1 class="cover-heading">Profile</h1>
+          <p class="cover-text">Hello, {{ user.username }}!</p>
+          <div class="row col-sm-20 col-md-9 offset-md--3">
+          <a href={% url 'director_dashboard' %} class="btn btn-lg btn-secondary">
+                Dashboard
+          </a>
+            <a href= {% url 'log_out' %} class="btn btn-lg btn-secondary">
+                Log Out
+            </a>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
