@@ -49,8 +49,7 @@ $ python3 manage.py test
 
 ## Known bugs
 
-1. Seeder does not execute. Making new requests has a bug.
-2. Logging in is done with a username instead of an email;
+1. Logging in is done with a username instead of an email;
 Format username: @{first_name}{last_name}
 
 ## Sources
