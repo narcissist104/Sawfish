@@ -10,8 +10,8 @@
           <div class="row col-sm-20 col-md-9 offset-md--3">
           <form action='{{req.id}}' method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Cancel</a>
+            {% include 'partials/bootstrap_form.html' with form=form %}
+            <a href={% url 'manage_requests' %} class="btn btn-lg">Cancel</a>
             <input type="submit" value="Submit" class="btn btn-primary">
           </form>
           </div>

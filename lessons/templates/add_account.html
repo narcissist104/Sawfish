@@ -14,7 +14,7 @@
             {{f.label}}
             {{f}}
             {% endfor %}
-            <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Cancel</a>
+            <a href={% url 'director_dashboard' %} class="btn btn-lg">Cancel</a>
             <input type="submit" value="Submit" class="btn btn-primary">
           </form>
           </div>

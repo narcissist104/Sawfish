@@ -14,7 +14,8 @@
             {{f.label}}
             {{f}}
             {% endfor %}
-            <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Cancel</a>
+            {% include 'partials/bootstrap_form.html' with form=form %}
+            <a href={% url 'manage_accounts' %} class="btn btn-lg">Cancel</a>
             <input type="submit" value="Submit" class="btn btn-primary">
           </form>
           </div>
