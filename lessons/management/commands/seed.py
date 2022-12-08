@@ -13,6 +13,34 @@ class Command(BaseCommand):
        self.faker = Faker('en_GB')
 
     def handle(self, *args, **options):
+        """Default users: """
+        User.objects.create_user(
+            "@johndoe",
+            first_name="John",
+            last_name="Doe",
+            email="john.doe@example.org",
+            password="Password123",
+            bio="bio",
+            type="student"
+        )
+        User.objects.create_user(
+            "@petrapickles",
+            first_name="Petra",
+            last_name="Pickles",
+            email="petra.pickles@example.org",
+            password="Password123",
+            bio="bio",
+            type="admin"
+        )
+        User.objects.create_user(
+            "@martymajor",
+            first_name="Marty",
+            last_name="Major",
+            email="marty.major@example.org",
+            password="Password123",
+            bio="bio",
+            type="director"
+        )
         user_count = 0
         while user_count < Command.COUNT:
             print(f'Seeding user {user_count}',  end='\r')
