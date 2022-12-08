@@ -1,8 +1,8 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from faker import Faker 
 from lessons.models import User, Request, Teacher
 from django.db import IntegrityError
-import datetime, random
+import random
 
 
 class Command(BaseCommand):
@@ -56,14 +56,17 @@ class Command(BaseCommand):
     def _create_request(self, user):
         for i in range(50):
             student_id = user.id
-            instrument = self.faker.instrument()
-            availability = datetime.date(random.randint(2022, 2023), random.randint(1, 12), random.randint(1, 28))
+            instrument = self.faker.text(max_nb_chars=10)
+            # year = random.randint(2022, 2023)
+            # month =  random.randint(1, 12)
+            # day = random.randint(1, 28)
+            availability = "2022-12-31"
             number_of_lessons = random.randint(1, 5)
             interval = random.randint(1, 5)
             duration = random.randint(1, 5)
             teacher_id = random.randint(1, self.COUNT)
-            booked = random.choices([True, False])
-            new_request = Request.objects.create(
+            booked = False
+            new_request = Request(
                 student_id,
                 instrument,
                 availability,
