@@ -1,5 +1,5 @@
 from django.test import SimpleTestCase
-from lessons.forms import LogInForm, SignUpForm, EditRequestForm, EditAccount, Student_Request_Form
+from lessons.forms import LogInForm, SignUpForm, EditAccount, Student_Request_Form
 from lessons.models import User
 import datetime
 
@@ -38,25 +38,6 @@ class TestForms(SimpleTestCase):
     
     def test_sign_up_form_no_data(self):
         form = SignUpForm(data={})
-
-        self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 6)
-
-    # Edit request form
-    def test_edit_request_form_valid_data(self):
-        form = EditRequestForm(data={
-            'instrument': 'violin',
-            'availability': self.date,
-            'number_of_lessons': '5',
-            'interval': '5',
-            'duration': '60',
-            'teacher_id': '2'
-        })
-
-        self.assertTrue(form.is_valid())
-    
-    def test_edit_request_form_no_data(self):
-        form = EditRequestForm(data={})
 
         self.assertFalse(form.is_valid())
         self.assertEquals(len(form.errors), 6)
@@ -100,4 +81,4 @@ class TestForms(SimpleTestCase):
         form = Student_Request_Form(data={})
 
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 6)
+        self.assertEquals(len(form.errors), 5)
