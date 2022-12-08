@@ -24,13 +24,17 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('log_in/', views.log_in, name='log_in'),
     path('sign_up/', views.sign_up, name='sign_up'),
+    path('profile/', views.profile, name='profile'),
+    path('profile/log_out', views.log_out, name='log_out'),
     # URLs for Student
     path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
     path('student_request_form/', views.student_request_form, name='student_request_form'),
     path('view_request_form/', views.view_request_form, name='view_request_form'),
+    path('view_request_form/delete/<request_id>', views.delete_student_request, name='delete_request_form'),
     # URLs for Admins
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('manage_requests/', views.manage_requests, name='manage_requests'),
+    path("manage_requests/book/<request_id>", views.book_request),
     path("manage_requests/edit/<request_id>", views.edit_requests, name='edit_requests'),
     path("manage_requests/delete/<request_id>", views.delete_requests, name='delete_requests'),
     # URLs for Directors

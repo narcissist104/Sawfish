@@ -1,7 +1,7 @@
 """Forms for the microblogs app."""
 from django import forms
 from django.core.validators import RegexValidator
-from .models import User, Lesson, Request
+from .models import User, Lesson, Request, Teacher
 
 class LogInForm(forms.Form):
     """Form enabling registered users to log in."""
@@ -54,16 +54,6 @@ class SignUpForm(forms.ModelForm):
         )
         return user
 
-class EditRequestForm(forms.Form):
-    """Form enabling request edits by admins"""
-    instrument = forms.CharField(label="Instrument")
-    availability = forms.DateField(label="Availability")
-    number_of_lessons = forms.IntegerField(label="Number of Lessons")
-    interval = forms.IntegerField(label="Interval")
-    duration = forms.CharField(label="Duration", max_length=10)
-    teacher_id = forms.IntegerField(label="Teacher ID")
-
-
 class EditAccount(forms.Form):
     """Form enabling request edits by admins"""
     username = forms.CharField(label="username")
@@ -83,7 +73,10 @@ class Student_Request_Form(forms.ModelForm):
     
     class Meta:
         model = Request
-        fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration', 'teacher_id']
+        fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration']
+
+    # teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    # teacher_id = forms.ChoiceField(choices=teacherTable)
 
 
 

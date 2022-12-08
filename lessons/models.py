@@ -35,6 +35,12 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.username)
 
+class Teacher(models.Model):
+    name = models.CharField(max_length=20)
+    def __str__(self):
+        return str(self.name)
+
+
 class Invoice(models.Model):
     invoiceNum = models.CharField(max_length=30)
     referNum = models.CharField(max_length=30)
@@ -79,4 +85,5 @@ class Request(models.Model):
         ('60','60 minutes'),
     )
     duration = models.CharField(max_length=10, choices=SELVALUE_DURATION)
-    teacher_id = models.CharField(max_length=20)
+    booked = models.BooleanField(default=False)
+    teacher_id = models.IntegerField(choices=(()))
