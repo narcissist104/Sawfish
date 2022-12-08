@@ -4,15 +4,12 @@ from lessons.models import User
 class TestModesl(TestCase):
 
     def setUp(self):
-        self.student1 = User.objects.create(
-            username='Johnny',
-            first_name='John',
-            last_name='Doe',
-            email='johndoe@example.org',
-            bio="Hi, I'm John.",
-            type='student'
-        )
+        pass
+
+    def test_username_regex(self):
+        self.assertRegex('@Johnny_', r'^@\w{3,}$')
+        self.assertNotRegex('@Johnny^', r'^@\w{3,}$')
+        self.assertNotRegex('Johnny_', r'^@\w{3,}$')
 
         
-
         
