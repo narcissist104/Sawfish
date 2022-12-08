@@ -1,5 +1,5 @@
-{% extends 'base.html'%}
-{% block body%}
+{% extends 'base_content.html'%}
+{%block content%}
 <html>
     <head>
         <title>View request form</title> 
@@ -14,22 +14,33 @@
                     <th>Interval</th>
                     <th>Duration</th>
                     <th>Teacher</th>
+                    <th>Booked</th>
                 </tr>
                 <tbody>
                     {% for r in requests %}
-                    <tr class = "'column">
-                        <td> {{r.id}}</td>
+                    <tr class = "column">
+                        <td>{{r.id}}</td>
                         <td>{{r.instrument}}</td>
                         <td>{{r.number_of_lessons}}</td>
                         <td>{{r.interval}}</td>
                         <td>{{r.duration}}</td>
                         <td>{{r.teacher_id}}</td>
+                        {% if r.booked == False %}
+                        <td>{{r.booked}}</td>
+                        <td>
+                            <a href="edit/{{r.id}}" class='btn btn-lg'>Edit</a>
+                        </td>
+                        <td>
+                            <a href="delete/{{r.id}}" class='btn btn-lg'>Delete</a>
+                        </td>
+                        {% elif r.booked == True %}
+                        <td> booked </td>
+                        {% endif %}
                     </tr>
                         {% endfor%}
                 </tbody>
             </table>
-        
-
-
+            <a href="{% url 'student_dashboard' %}" class='btn btn-lg'> Back</a>
+        </body>
 </html>
 {% endblock %}
