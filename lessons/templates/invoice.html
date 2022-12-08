@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>Balance Page</title>
+		<title>Invoice Page</title>
 
 		<style>
-			.balance-box {
-				max-width: 1200px;
+			.invoice-box {
+				max-width: 800px;
 				margin: auto;
 				padding: 30px;
 				border: 1px solid #eee;
@@ -17,100 +17,102 @@
 				color: #555;
 			}
 
-			.balance-box table {
+			.invoice-box table {
 				width: 100%;
 				line-height: inherit;
 				text-align: left;
 			}
 
-			.balance-box table td {
+			.invoice-box table td {
 				padding: 5px;
 				vertical-align: top;
 			}
 
-			.balance-box table tr td:nth-child(2) {
+			.invoice-box table tr td:nth-child(2) {
 				text-align: right;
 			}
 
-			.balance-box table tr.top table td {
-				padding-bottom: 10px;
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
 			}
 
-			.balance-box table tr.top table td.title {
+			.invoice-box table tr.top table td.title {
 				font-size: 45px;
 				line-height: 45px;
 				color: #333;
 			}
 
-			.balance-box table tr.information table td {
+			.invoice-box table tr.information table td {
 				padding-bottom: 40px;
 			}
 
-			.balance-box table tr.heading td {
+			.invoice-box table tr.heading td {
 				background: #eee;
 				border-bottom: 1px solid #ddd;
 				font-weight: bold;
-
 			}
 
-			.balance-box table tr.details td {
+			.invoice-box table tr.details td {
 				padding-bottom: 20px;
 			}
 
-			.balance-box table tr.item td {
+			.invoice-box table tr.item td {
 				border-bottom: 1px solid #eee;
 			}
 
-			.balance-box table tr.item.last td {
+			.invoice-box table tr.item.last td {
 				border-bottom: none;
 			}
 
-			.balance-box table tr.total td:nth-child(2) {
+			.invoice-box table tr.total td:nth-child(2) {
 				border-top: 2px solid #eee;
 				font-weight: bold;
 			}
 
 			@media only screen and (max-width: 600px) {
-				.balance-box table tr.top table td {
+				.invoice-box table tr.top table td {
 					width: 100%;
 					display: block;
-					text-align: right;
+					text-align: center;
 				}
 
-				.balance-box table tr.information table td {
+				.invoice-box table tr.information table td {
 					width: 100%;
 					display: block;
-					text-align: right;
+					text-align: center;
 				}
 			}
 
 			/** RTL **/
-			.balance-box.rtl {
+			.invoice-box.rtl {
 				direction: rtl;
 				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
 			}
 
-			.balance-box.rtl table {
+			.invoice-box.rtl table {
 				text-align: right;
 			}
 
-			.balance-box.rtl table tr td:nth-child(2) {
+			.invoice-box.rtl table tr td:nth-child(2) {
 				text-align: left;
 			}
 		</style>
 	</head>
-
+	{% block body%}
 	<body>
-		<div class="balance-box">
+		<div class="invoice-box">
 			<table cellpadding="0" cellspacing="0">
 				<tr class="top">
 					<td colspan="2">
 						<table>
 							<tr>
-							
+								<td class="title">
+									<img src="Logo.png" style="width: 100%; max-width: 300px" />
+								</td>
+
 								<td>
-									Admin Balance Page <br />
-									Music App<br />
+									Invoice ID: {{invoice_id}} <br />
+									Date : {{invoice_date}}<br />
 								
 								</td>
 							</tr>
@@ -123,54 +125,49 @@
 						<table>
 							<tr>
 								<td>
-									School Balance<br />
+									{{school_Name}}<br />
+									{{school_address}}<br />
 									
 								</td>
+								{% for account in accounts %}
 
 								<td>
-									{{school_Balance}}<br />
-									
+									{{Student_name}}<br />
+									{{Student_id}}<br />
+									{{Student_Email}} <br/>
+									{{bank_id}}
 								</td>
+								{% endfor %}
+
 							</tr>
 						</table>
 					</td>
 				</tr>
 
+		
+
 				<tr class="heading">
-					<td>Account Number</td>
-					<td>  Name </td>
-					<td>  ID   </td>
-					<td>Paid</td>
+					<td>Item</td>
+
+					<td>Price</td>
 				</tr>
 
-				<tr class="details">
-					<td>1523647879524DA5</td>
-					
+				<tr class="item">
+					<td>{{lesson_Name}}</td>
 
-					<td>Alex Smith</td>
-					<td>195202</td>
-					<td>150$</td>
-				</tr>
-				<tr class="details">
-					<td>{{Student_account}}</td>
-					
-
-					<td>{{Student_name}}</td>
-					<td>{{Student_id}}</td>
-					<td>{{student_payment}}</td>
-				</tr>
-				<tr class="details">
-					<td>{{Student_account}}</td>
-					
-
-					<td>{{Student_name}}</td>
-					<td>{{Student_id}}</td>
-					<td>{{student_payment}}</td>
+					<td>{{lesson_price}}</td>
 				</tr>
 
-				
+
+
+				<tr class="total">
+					<td></td>
+
+					<td>Total: {{total}}</td>
+				</tr>
 			</table>
 		</div>
 	</body>
+	{%endblock%}
+
 </html>
-hello world
