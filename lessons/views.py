@@ -55,6 +55,7 @@ def admin_dashboard(request):
     if request.user.type == "student":
         return redirect('http://localhost:8000/student_dashboard')
     return render(request, 'admin_dashboard.html')
+
 @login_required
 def manage_requests(request):
     if request.user.type == "student":
@@ -62,7 +63,6 @@ def manage_requests(request):
         return redirect('http://localhost:8000/student_dashboard')
     requests = Request.objects.all()
     return render(request, 'manage_requests.html', {'requests': requests})
-
 
 @login_required
 def edit_requests(request, request_id):
