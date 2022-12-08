@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base_content.html'%}
+{%block content%}
 <div id="cover-image">
   <div class="container vh-100">
     <div class="row h-100">
@@ -10,10 +10,6 @@
           <div class="row col-sm-20 col-md-9 offset-md--3">
           <form action='{{req.id}}' method="post">
             {% csrf_token %}
-            {% for f in form %}
-            {{f.label}}
-            {{f}}
-            {% endfor %}
             {% include 'partials/bootstrap_form.html' with form=form %}
             <a href={% url 'manage_accounts' %} class="btn btn-lg">Cancel</a>
             <input type="submit" value="Submit" class="btn btn-primary">
