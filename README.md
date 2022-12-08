@@ -2,7 +2,7 @@
 
 ## Team members
 The members of the team are:
-- *ALEX*
+- *ALEX KLEIN*
 - *CHUN-I*
 - *NARGES*
 - *ONEEB*
