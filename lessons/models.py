@@ -44,7 +44,7 @@ class Teacher(models.Model):
 class Invoice(models.Model):
     invoiceNum = models.CharField(max_length=30)
     referNum = models.CharField(max_length=30)
-    bank_id = models.CharField(max_length=30)
+    bank_id = models.CharField(max_length=30, default=0)
     def __str__(self):
         return str(self.invoiceNum)
 class BankAccount(models.Model):
