@@ -6,8 +6,9 @@ from .models import User, Lesson, Request, Teacher
 class LogInForm(forms.Form):
     """Form enabling registered users to log in."""
 
-    username = forms.CharField(label="Username")
+    email = forms.EmailField(label="Email")
     password = forms.CharField(label="Password", widget=forms.PasswordInput())
+    
 
 
 class SignUpForm(forms.ModelForm):
