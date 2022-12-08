@@ -146,6 +146,7 @@ def director_dashboard(request):
     if request.user.type != "director":
         return redirect('http://localhost:8000/admin_dashboard')
     return render(request, 'director_dashboard.html')
+
 @login_required
 def manage_accounts(request):
     if request.user.type != "director":
