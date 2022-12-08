@@ -67,14 +67,14 @@ class Command(BaseCommand):
             teacher_id = random.randint(1, self.COUNT)
             booked = False
             new_request = Request(
-                student_id,
-                instrument,
-                availability,
-                number_of_lessons,
-                interval,
-                duration,
-                teacher_id,
-                booked
+                student_id=student_id,
+                instrument=instrument,
+                availability=availability,
+                number_of_lessons=number_of_lessons,
+                interval=interval,
+                duration=duration,
+                teacher_id=teacher_id,
+                booked=booked
             )
             new_request.save()
 
@@ -96,8 +96,8 @@ class Command(BaseCommand):
 
     def _create_teacher(self):
         name = self.faker.name()
-        new_teacher = Teacher.objects.create_user(
-            name,
+        new_teacher = Teacher(
+            name=name,
         )
         new_teacher.save()
 
