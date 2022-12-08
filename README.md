@@ -47,6 +47,12 @@ $ python3 manage.py test
 
 *The above instructions should work in your version of the application.  If there are deviations, declare those here in bold.  Otherwise, remove this line.*
 
+## Known bugs
+
+1. Seeder does not execute. Making new requests has a bug.
+2. Logging in is done with a username instead of an email;
+Format username: @{first_name}{last_name}
+
 ## Sources
 The packages used by this application are specified in `requirements.txt`
 
