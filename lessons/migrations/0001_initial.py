@@ -61,7 +61,15 @@ class Migration(migrations.Migration):
                 ('number_of_lessons', models.IntegerField()),
                 ('interval', models.IntegerField()),
                 ('duration', models.CharField(choices=[('30', '30 minutes'), ('45', '45 minutes'), ('60', '60 minutes')], max_length=10)),
-                ('teacher_id', models.CharField(max_length=20)),
+                ('booked', models.BooleanField(default=False)),
+                ('teacher_id', models.IntegerField(choices=[])),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Teacher',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('name', models.CharField(max_length=20)),
             ],
         ),
         migrations.CreateModel(

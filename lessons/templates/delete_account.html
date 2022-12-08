@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base_content.html'%}
+{%block content%}
 <div id="cover-image">
   <div class="container vh-100">
     <div class="row h-100">
@@ -8,7 +8,7 @@
           <h1 class="cover-heading">Director Dashboard</h1>
           <p class="cover-text">Are you sure you want to delete Account ID: {{ request }}?</p>
           <div class="row col-sm-20 col-md-9 offset-md--3">
-            <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Cancel</a>
+            <a href={% url 'director_dashboard' %} class="btn btn-lg">Cancel</a>
             <br/>
           <form action='{{req.id}}' method="post">
             {% csrf_token %}

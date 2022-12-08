@@ -1,5 +1,5 @@
-{% extends 'base.html' %}
-{% block body %}
+{% extends 'base_content.html'%}
+{%block content%}
 <div id="cover-image">
   <div class="container vh-100">
     <div class="row h-100">
@@ -29,9 +29,9 @@
             {% endfor %}
             </tbody>
           </table>
+          <a href={% url 'create_account' %} class="btn btn-lg">Create Account</a>
+          <a href={% url 'director_dashboard' %} class="btn btn-lg">Back</a>
         </div>
-        <a href='http://localhost:8000/director_dashboard/' class="btn btn-lg">Back</a>
-          <a href='http://localhost:8000/manage_accounts/add' class="btn btn-lg">Create Account</a>
       </div>
     </div>
   </div>
