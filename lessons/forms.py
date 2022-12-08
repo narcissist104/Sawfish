@@ -75,8 +75,8 @@ class Student_Request_Form(forms.ModelForm):
         model = Request
         fields = ['instrument', 'availability', 'number_of_lessons', 'interval', 'duration']
 
-    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
-    teacher_id = forms.ChoiceField(choices=teacherTable)
+    # teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    # teacher_id = forms.ChoiceField(choices=teacherTable)
 
 
 

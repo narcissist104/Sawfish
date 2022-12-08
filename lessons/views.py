@@ -96,7 +96,7 @@ def edit_requests(request, request_id):
     req = Request.objects.get(id=request_id)
     form = Student_Request_Form(initial={'instrument':req.instrument, 'availability':req.availability,'number_of_lessons':req.number_of_lessons,'interval':req.interval,'duration':req.duration,'teacher_id':req.teacher_id})
     teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
-    form.fields['teacher_id'].choices = teacherTable
+    form.fields['teacher_id'] = forms.ChoiceField(choices=teacherTable)
     return render(request, 'edit_request.html', context={'request': req, 'form': form})
 
 
@@ -121,6 +121,8 @@ def student_request_form(request):
     form = Student_Request_Form()
     if request.method == 'POST':
         form = Student_Request_Form(request.POST)
+        teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+        form.fields['teacher_id'] = forms.ChoiceField(choices=teacherTable)
         if form.is_valid():
             instrument = form.cleaned_data.get('instrument')
             availability = form.cleaned_data.get('availability')
@@ -134,7 +136,14 @@ def student_request_form(request):
                        teacher_id=teacher_id)
             req.save()
             return redirect('http://localhost:8000/student_dashboard')
+    teacherTable = ((teacher.id, teacher.name) for teacher in Teacher.objects.all())
+    form.fields['teacher_id'] = forms.ChoiceField(choices=teacherTable)
     return render(request, 'student_request_form.html', {'form':form})
+
+@login_required
+def delete_student_request(request, request_id):
+    requests = Request.objects.get(id=request_id).delete()
+    return redirect('http://localhost:8000/view_request_form/')
 
 
 def view_request_form(request):

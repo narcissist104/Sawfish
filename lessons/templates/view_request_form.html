@@ -14,6 +14,7 @@
                     <th>Interval</th>
                     <th>Duration</th>
                     <th>Teacher</th>
+                    <th>Booked</th>
                 </tr>
                 <tbody>
                     {% for r in requests %}
@@ -32,7 +33,6 @@
                         <td>
                             <a href="delete/{{r.id}}" class='btn btn-lg'>Delete</a>
                         </td>
-
                         {% elif r.booked == True %}
                         <td>{{r.instrument}}</td>
                         <td>{{r.availibility}}</td>
