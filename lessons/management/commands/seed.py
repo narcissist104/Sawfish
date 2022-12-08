@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand, CommandError
 from faker import Faker 
-from lessons.models import User, Request
+from lessons.models import User, Request, Teacher
 from django.db import IntegrityError
-import datetime, random, teacher
+import datetime, random
 
 
 class Command(BaseCommand):
