@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from lessons.views import home, log_in, sign_up, student_dashboard, student_request_form, view_request_form, admin_dashboard, manage_requests, delete_requests, edit_requests, director_dashboard, manage_accounts, create_account, edit_account, delete_account
+from lessons.views import home, log_in, sign_up, student_dashboard, student_request_form, view_request_form, admin_dashboard, manage_requests, delete_requests, edit_requests, director_dashboard, manage_accounts, create_account, edit_account, delete_account, profile, log_out
 #from lessons.admin.site import urls
 
 class TestURLS(SimpleTestCase):
@@ -26,6 +26,14 @@ class TestURLS(SimpleTestCase):
     def test_sign_up_url_is_resolved(self):
         url = reverse('sign_up')
         self.assertEquals(resolve(url).func, sign_up)
+
+    def test_profile_url_is_resolved(self):
+        url = reverse('profile')
+        self.assertEquals(resolve(url).func, profile)
+
+    def test_log_out_url_is_resolved(self):
+        url = reverse('log_out')
+        self.assertEquals(resolve(url).func, log_out)
     
     # URLs for Student
     '''Ensure student dashboard url redirects to the student dashboard page'''
