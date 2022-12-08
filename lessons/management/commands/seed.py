@@ -62,6 +62,7 @@ class Command(BaseCommand):
             interval = random.randint(1, 5)
             duration = random.randint(1, 5)
             teacher_id = random.randint(1, self.COUNT)
+            booked = random.choices([True, False])
             new_request = Request.objects.create(
                 student_id,
                 instrument,
@@ -69,7 +70,8 @@ class Command(BaseCommand):
                 number_of_lessons,
                 interval,
                 duration,
-                teacher_id
+                teacher_id,
+                booked
             )
             new_request.save()
 
