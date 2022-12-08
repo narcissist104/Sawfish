@@ -14,17 +14,17 @@ class TestURLS(SimpleTestCase):
 
     '''Ensure home url redirects to the home page'''
     def test_home_url_is_resolved(self):
-        url = reverse('home_url')
+        url = reverse('home')
         self.assertEquals(resolve(url).func, home)
 
     '''Ensure log-in url redirects to the log-in page'''
     def test_log_in_url_is_resolved(self):
-        url = reverse('log_in_url')
+        url = reverse('log_in')
         self.assertEquals(resolve(url).func, log_in)
 
     '''Ensure sign-up url redirects to the sign-up page'''
     def test_sign_up_url_is_resolved(self):
-        url = reverse('sign_up_url')
+        url = reverse('sign_up')
         self.assertEquals(resolve(url).func, sign_up)
     
     # URLs for Student

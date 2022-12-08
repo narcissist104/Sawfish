@@ -7,9 +7,9 @@ class TestViews(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.home_url = reverse('home_url')
-        self.log_in_url = reverse('log_in_url')
-        self.sign_up_url = reverse('sign_up_url')
+        self.home_url = reverse('home')
+        self.log_in_url = reverse('log_in')
+        self.sign_up_url = reverse('sign_up')
         self.admin_dashboard_url = reverse('admin_dashboard')
         self.manage_requests_url = reverse('manage_requests')
 

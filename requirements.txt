@@ -2,3 +2,4 @@ coverage
 Django
 Faker
 libgravatar
+django-widget-tweaks

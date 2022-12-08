@@ -21,9 +21,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home_url'),
-    path('log_in/', views.log_in, name='log_in_url'),
-    path('sign_up/', views.sign_up, name='sign_up_url'),
+    path('', views.home, name='home'),
+    path('log_in/', views.log_in, name='log_in'),
+    path('sign_up/', views.sign_up, name='sign_up'),
     # URLs for Student
     path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
     path('student_request_form/', views.student_request_form, name='student_request_form'),
